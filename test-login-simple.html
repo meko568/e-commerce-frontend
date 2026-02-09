@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Login Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+        button { padding: 10px 20px; margin: 5px; }
+        pre { background: #f5f5f5; padding: 10px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>Login API Debug</h1>
+    
+    <div class="test-section">
+        <h3>1. Test with existing user</h3>
+        <button onclick="testExistingUser()">Test with test@example.com</button>
+        <div id="existing-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>2. Create test user first</h3>
+        <button onclick="createTestUser()">Create test user</button>
+        <div id="create-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>3. Test login after creating user</h3>
+        <button onclick="testNewUser()">Test with new user</button>
+        <div id="login-result"></div>
+    </div>
+
+    <script>
+        async function testExistingUser() {
+            const resultDiv = document.getElementById('existing-result');
+            await testLogin('test@example.com', 'password123', resultDiv);
+        }
+        
+        async function createTestUser() {
+            const resultDiv = document.getElementById('create-result');
+            resultDiv.innerHTML = 'Creating user...';
+            
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: 'Test User',
+                        email: 'test@example.com',
+                        password: 'password123'
+                    })
+                });
+                
+                const data = await response.json();
+                resultDiv.innerHTML = `
+                    <h4>Status: ${response.status}</h4>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<h4>Error:</h4><pre>${error.message}</pre>`;
+            }
+        }
+        
+        async function testNewUser() {
+            const resultDiv = document.getElementById('login-result');
+            await testLogin('test@example.com', 'password123', resultDiv);
+        }
+        
+        async function testLogin(email, password, resultDiv) {
+            resultDiv.innerHTML = 'Testing login...';
+            
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                const data = await response.json();
+                
+                resultDiv.innerHTML = `
+                    <h4>Status: ${response.status}</h4>
+                    <h4>Response:</h4>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                    <h4>Validation:</h4>
+                    <p>Has success: ${!!data.success}</p>
+                    <p>Has user: ${!!data.user}</p>
+                    <p>Has token: ${!!data.token}</p>
+                    <p>User data: ${data.user ? JSON.stringify(data.user) : 'null'}</p>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<h4>Error:</h4><pre>${error.message}</pre>`;
+            }
+        }
+    </script>
+</body>
+</html>

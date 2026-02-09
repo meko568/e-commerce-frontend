@@ -1,0 +1,271 @@
+/* Light Mode Styles */
+.light {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #e9ecef;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --text-tertiary: #adb5bd;
+  --border-primary: #dee2e6;
+  --border-secondary: #ced4da;
+  --accent-primary: #007bff;
+  --accent-secondary: #6c757d;
+  --success: #28a745;
+  --warning: #ffc107;
+  --error: #dc3545;
+  --info: #17a2b8;
+}
+
+/* Light mode specific overrides */
+.light body {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Navbar light mode styles */
+.light .fixed.top-0.left-0.right-0 {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-color: var(--border-primary) !important;
+}
+
+.light .fixed.top-0.left-0.right-0.scrolled {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Hero Section light mode styles */
+.light .relative.min-h-screen {
+  background-color: #ffffff !important;
+}
+
+.light .text-transparent.bg-clip-text {
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+}
+
+/* Floating badges text - force white in light mode */
+.light .absolute.top-20 .text-white,
+.light .absolute.bottom-20 .text-white {
+  color: #ffffff !important;
+}
+
+.light .absolute.top-20 .text-\[10px\],
+.light .absolute.bottom-20 .text-\[10px\] {
+  color: #ffffff !important;
+}
+
+/* Force only text labels to be white, keep AI/HIFI circles black */
+.light .absolute.top-20 div > div > div,
+.light .absolute.bottom-20 div > div > div {
+  color: #ffffff !important;
+}
+
+/* Force white text for profile and admin buttons in light mode */
+.light .bg-gradient-to-r.from-purple-700 .text-white,
+.light .bg-gradient-to-r.from-blue-700 .text-white {
+  color: #ffffff !important;
+}
+
+.light .bg-gradient-to-r.from-purple-700 span,
+.light .bg-gradient-to-r.from-blue-700 span {
+  color: #ffffff !important;
+}
+
+.light .bg-gradient-to-r.from-purple-700 svg,
+.light .bg-gradient-to-r.from-blue-700 svg {
+  color: #ffffff !important;
+}
+
+.light .bg-black {
+  background-color: var(--bg-primary) !important;
+}
+
+.light .bg-gray-900 {
+  background-color: var(--bg-secondary) !important;
+}
+
+.light .bg-gray-800 {
+  background-color: var(--bg-tertiary) !important;
+}
+
+.light .bg-gray-700 {
+  background-color: var(--border-primary) !important;
+}
+
+.light .text-white {
+  color: var(--text-primary) !important;
+}
+
+.light .text-gray-300 {
+  color: var(--text-secondary) !important;
+}
+
+.light .text-gray-400 {
+  color: var(--text-tertiary) !important;
+}
+
+.light .text-gray-500 {
+  color: var(--text-tertiary) !important;
+}
+
+.light .text-gray-600 {
+  color: var(--text-secondary) !important;
+}
+
+.light .border-gray-700 {
+  border-color: var(--border-primary) !important;
+}
+
+.light .border-gray-600 {
+  border-color: var(--border-secondary) !important;
+}
+
+/* Button styles for light mode */
+.light .bg-cyan-500 {
+  background-color: var(--accent-primary) !important;
+}
+
+.light .hover\:bg-cyan-600:hover {
+  background-color: #0056b3 !important;
+}
+
+.light .bg-blue-600 {
+  background-color: #0056b3 !important;
+}
+
+.light .hover\:bg-blue-700:hover {
+  background-color: #004085 !important;
+}
+
+/* Input styles for light mode */
+.light input,
+.light textarea,
+.light select {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-primary) !important;
+}
+
+.light input:focus,
+.light textarea:focus,
+.light select:focus {
+  border-color: var(--accent-primary) !important;
+}
+
+.light input::placeholder,
+.light textarea::placeholder {
+  color: var(--text-tertiary) !important;
+}
+
+/* Card styles for light mode */
+.light .bg-gray-900\/50 {
+  background-color: rgba(248, 249, 250, 0.9) !important;
+}
+
+/* Navbar styles for light mode */
+.light .bg-black\/90 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+}
+
+/* Product card styles */
+.light .bg-gray-900\/50 {
+  background-color: rgba(248, 249, 250, 0.9) !important;
+}
+
+/* Form styles */
+.light .bg-gray-800 {
+  background-color: var(--bg-secondary) !important;
+}
+
+/* Hover states */
+.light .hover\:bg-gray-800:hover {
+  background-color: var(--bg-tertiary) !important;
+}
+
+.light .hover\:bg-gray-700:hover {
+  background-color: var(--border-primary) !important;
+}
+
+/* Focus states */
+.light .focus\:border-cyan-500:focus {
+  border-color: var(--accent-primary) !important;
+}
+
+/* Toast notifications */
+.light .bg-red-500 {
+  background-color: var(--error) !important;
+}
+
+.light .bg-green-500 {
+  background-color: var(--success) !important;
+}
+
+.light .bg-yellow-500 {
+  background-color: var(--warning) !important;
+}
+
+/* Star ratings */
+.light .text-yellow-400 {
+  color: #ffc107 !important;
+}
+
+.light .text-gray-300 {
+  color: var(--text-tertiary) !important;
+}
+
+/* Scrollbar for light mode */
+.light ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.light ::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: var(--border-primary);
+  border-radius: 4px;
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Hero section */
+.light .bg-gradient-to-br {
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%) !important;
+}
+
+/* Text colors for better readability */
+.light h1,
+.light h2,
+.light h3,
+.light h4,
+.light h5,
+.light h6 {
+  color: var(--text-primary) !important;
+}
+
+.light p,
+.light span,
+.light div {
+  color: var(--text-primary) !important;
+}
+
+.light .text-cyan-400 {
+  color: var(--accent-primary) !important;
+}
+
+.light .text-cyan-500 {
+  color: var(--accent-primary) !important;
+}
+
+/* Links */
+.light a {
+  color: var(--accent-primary) !important;
+}
+
+.light a:hover {
+  color: #0056b3 !important;
+}
