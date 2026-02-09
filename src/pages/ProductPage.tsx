@@ -325,7 +325,7 @@ export function ProductPage() {
 
       {/* Comments Section */}
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <CommentsSection productId={currentProductId} />
+        <CommentsSection productId={Number(currentProductId)} />
       </div>
     </div>
   );
