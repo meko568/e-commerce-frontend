@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ArrowLeft, ShoppingCart, Heart, Share2, Star, Package, DollarSign, Hash, ChevronLeft, ChevronRight } from 'lucide-react';
 import { toast } from 'sonner';
-import { useAuth } from '../contexts/AuthContext';
 import { useCart } from '../contexts/CartContext';
 import { useNavigation } from '../contexts/NavigationContext';
 import { API_URL } from '../config/api';
