@@ -10,7 +10,7 @@
     }
   ],
   "env": {
-    "VITE_API_URL": "@api-url"
+    "VITE_API_URL": "https://commercebackend-production-68d6.up.railway.app/"
   },
   "routes": [
     {
