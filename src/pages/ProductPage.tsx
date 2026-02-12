@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { ArrowLeft, ShoppingCart, Heart, Share2, Star, Package, DollarSign, Hash, ChevronLeft, ChevronRight } from 'lucide-react';
 import { toast } from 'sonner';
+import { useAuth } from '../contexts/AuthContext';
 import { useCart } from '../contexts/CartContext';
 import { useNavigation } from '../contexts/NavigationContext';
+import { API_URL } from '../config/api';
 import { CommentsSection } from '../components/CommentsSection';
 
 interface Product {
@@ -35,7 +37,7 @@ export function ProductPage() {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`http://127.0.0.1:8000/api/products/${currentProductId}`);
+        const response = await fetch(`${API_URL}/api/products/${currentProductId}`);
         const data = await response.json();
 
         if (!response.ok) {
