@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { API_URL } from '../config/api';
 import { Eye, Package, MapPin, Phone, Mail, CheckCircle } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
