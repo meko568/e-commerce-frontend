@@ -71,10 +71,10 @@ export function NotificationPopup({
 
           {/* Message */}
           <div className="flex-1">
-            <h3 className="text-lg">
+            <h3 className="text-lg font-semibold text-gray-900">
               {type === 'success' ? 'Success!' : 'Error!'}
             </h3>
-            <p className="text-sm mt-1">
+            <p className="text-sm mt-1 text-gray-700">
               {message}
             </p>
           </div>
