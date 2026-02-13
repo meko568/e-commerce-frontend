@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://commercebackend-production-68d6.up.railway.app/';
+const API_BASE_URL = 'https://commercebackend-production-68d6.up.railway.app';
 
 export const API_URL = API_BASE_URL;
 
