@@ -3,6 +3,7 @@ import { Eye, EyeOff, Mail, Lock, AlertCircle } from 'lucide-react';
 import { NotificationPopup } from './NotificationPopup';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
+import { API_URL } from '../config/api';
 
 interface FormData {
   email: string;
@@ -25,7 +26,7 @@ export function LoginForm({ onNavigateToSignup }: LoginFormProps) {
     type: 'success' | 'error';
     message: string;
   } | null>(null);
-  const { login } = useAuth();
+  const {} = useAuth();
   const { isRTL, t, language } = useTheme();
   const [formData, setFormData] = useState<FormData>({
     email: '',
@@ -86,20 +87,45 @@ export function LoginForm({ onNavigateToSignup }: LoginFormProps) {
     
     if (!hasErrors) {
       try {
-        await login(formData.email, formData.password);
-        
-        // Show success popup
-        setNotification({
-          type: 'success',
-          message: 'Login successful! Welcome back.'
+        const res = await fetch(`${API_URL}/api/login`, {
+          method: 'POST',
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: formData.email, password: formData.password })
         });
+
+        if (!res.ok) {
+          const errorData = await res.json();
+          if (res.status === 422 && errorData.errors) {
+            const firstError = Object.values(errorData.errors)[0] as string[];
+            const errorMessage = firstError?.[0] || errorData.message || 'Validation failed';
+            throw new Error(errorMessage);
+          }
+          throw new Error(errorData.message || 'Login failed');
+        }
+
+        const data = await res.json();
         
-        // Redirect to home after successful login
-        setTimeout(() => {
-          window.history.pushState({}, '', '/');
-          window.location.reload();
-        }, 2000);
-        
+        if (res.ok) {
+          if (data.success && data.user && data.token) {
+            // Store in localStorage
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
+            
+            // Show success popup
+            setNotification({
+              type: 'success',
+              message: 'Login successful! Welcome back.'
+            });
+            
+            // Redirect to home after successful login
+            setTimeout(() => {
+              window.history.pushState({}, '', '/');
+              window.location.reload();
+            }, 2000);
+            return;
+          }
+        } 
+        throw new Error(data.message || 'Login failed');
       } catch (error) {
         console.error('Login error:', error);
         const errorMessage = error instanceof Error ? error.message : 'Failed to login. Please try again.';
