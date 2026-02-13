@@ -4,7 +4,7 @@
   "outputDirectory": "dist",
   "framework": "vite",
   "env": {
-    "VITE_API_URL": "https://commercebackend-production-68d6.up.railway.app/"
+    "VITE_API_URL": "https://commercebackend-production-68d6.up.railway.app"
   },
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
