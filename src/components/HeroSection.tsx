@@ -1,11 +1,10 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { ChevronRight, Play, Cpu, Zap } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
 export function HeroSection() {
-  const { isRTL, t, language, theme } = useTheme();
+  const { isRTL, language, theme } = useTheme();
   return (
     <div className={`relative min-h-screen flex items-center justify-center overflow-hidden pt-20 ${
       theme === 'light' 

@@ -12,7 +12,7 @@ import { PayPalCheckout } from './components/PayPalCheckout';
 import { Toaster, toast } from 'sonner';
 import { ArrowRight, Github, Twitter, Instagram, Globe, Cpu, ShieldCheck, Zap } from 'lucide-react';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
-import { CartProvider, useCart } from './contexts/CartContext';
+import { CartProvider } from './contexts/CartContext';
 import { NavigationProvider, useNavigation } from './contexts/NavigationContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { useTheme } from './contexts/ThemeContext';
