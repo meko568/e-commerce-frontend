@@ -1,7 +1,6 @@
-import React from 'react';
 import { ShoppingCart, Heart, Star } from 'lucide-react';
-import { motion } from 'motion/react';
-import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
+import { motion } from 'framer-motion';
+import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { toast } from 'sonner';
 
 interface ProductCardProps {

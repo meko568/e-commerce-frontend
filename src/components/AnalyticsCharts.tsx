@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TrendingUp, TrendingDown, Package, DollarSign, ShoppingCart, Users } from 'lucide-react';
+import { Package, DollarSign, ShoppingCart, Users } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
 interface ChartProps {
@@ -10,8 +10,8 @@ interface ChartProps {
   color: string;
 }
 
-export function StatCard({ title, value, change, icon: Icon, color }: ChartProps) {
-  const { isRTL, language } = useTheme();
+export function StatCard({ title, value, icon: Icon, color }: ChartProps) {
+  const { isRTL } = useTheme();
   
   return (
     <div className={`bg-white rounded-xl shadow-sm border border-gray-200 p-6 ${isRTL ? 'text-right' : ''}`}>
@@ -297,7 +297,7 @@ export function TopProductsChart() {
 }
 
 export function AnalyticsCharts() {
-  const { isRTL, language } = useTheme();
+  const { language } = useTheme();
   const [stats, setStats] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -350,7 +350,6 @@ export function AnalyticsCharts() {
 
   const calculateRealStats = (products: any[], orders: any[], users: any[]) => {
     const totalSales = orders.reduce((sum, order) => sum + (parseFloat(order.total_amount) || 0), 0);
-    const totalOrders = orders.length;
     const totalCustomers = users.length;
     const totalProducts = products.length;
 

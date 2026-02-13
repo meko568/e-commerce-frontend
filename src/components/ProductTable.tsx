@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Edit2, Trash2, Eye, ToggleLeft, ToggleRight, Hash, Package } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Edit2, Trash2, ToggleLeft, ToggleRight, Hash, Package } from 'lucide-react';
 import { toast } from 'sonner';
 import { useTheme } from '../contexts/ThemeContext';
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { toast } from 'sonner';
 import { X } from 'lucide-react';
 
@@ -20,7 +20,7 @@ export function PayPalCheckout({ isOpen, onClose, onSuccess, amount }: PayPalChe
       
       // Render PayPal buttons
       window.paypal.Buttons({
-        createOrder: function(data, actions) {
+        createOrder: function(actions) {
           return actions.order.create({
             purchase_units: [{
               amount: {
@@ -30,8 +30,8 @@ export function PayPalCheckout({ isOpen, onClose, onSuccess, amount }: PayPalChe
             }]
           });
         },
-        onApprove: function(data, actions) {
-          return actions.order.capture().then(function(details: any) {
+        onApprove: function(actions) {
+          return actions.order.capture().then(function() {
             toast.success('Payment successful! Order placed.');
             onSuccess();
             onClose();

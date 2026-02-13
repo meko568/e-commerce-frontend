@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Plus, Minus, Trash2, ShoppingBag, CreditCard, ArrowRight } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
@@ -10,7 +10,7 @@ export function Cart({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
   const { cart, removeFromCart, updateQuantity, getCartTotal, getCartItemsCount, clearCart } = useCart();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [showCheckoutForm, setShowCheckoutForm] = useState(false);
-  const { isRTL, t, language } = useTheme();
+  const { isRTL, language } = useTheme();
 
   const handleCheckout = () => {
     if (cart.length === 0) {

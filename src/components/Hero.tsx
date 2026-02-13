@@ -1,7 +1,6 @@
-import React from 'react';
 import { ArrowRight } from 'lucide-react';
-import { motion } from 'motion/react';
-import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
+import { motion } from "framer-motion"
+import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 
 export function Hero() {
   return (

@@ -14,7 +14,7 @@ interface FuturisticNavbarProps {
   setIsCartOpen?: (open: boolean) => void;
 }
 
-export function FuturisticNavbar({ onLoginClick, isCartOpen, setIsCartOpen }: FuturisticNavbarProps) {
+export function FuturisticNavbar({ onLoginClick, setIsCartOpen }: FuturisticNavbarProps) {
   const { navigate } = useNavigation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [showProfile, setShowProfile] = useState(false);

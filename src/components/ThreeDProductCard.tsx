@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
+import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { ArrowUpRight, Zap } from 'lucide-react';
 
 interface ThreeDProductCardProps {

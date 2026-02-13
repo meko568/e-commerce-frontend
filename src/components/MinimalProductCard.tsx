@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { ShoppingCart, Heart, Plus, Zap, Star } from 'lucide-react';
+import { Heart, Plus, Zap, Star } from 'lucide-react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { useCart } from '../contexts/CartContext';
 import { useNavigation } from '../contexts/NavigationContext';
@@ -20,7 +19,7 @@ interface MinimalProductCardProps {
 export function MinimalProductCard({ id, name, price, image, category, rating, glowColor, productData }: MinimalProductCardProps) {
   const { addToCart } = useCart();
   const { navigate } = useNavigation();
-  const { isRTL, t, language } = useTheme();
+  const { isRTL, language } = useTheme();
 
   const handleProductClick = () => {
     // Navigate to product details page

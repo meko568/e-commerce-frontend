@@ -18,68 +18,10 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import { useTheme } from './contexts/ThemeContext';
 import './styles/light.css';
 
-const PRODUCTS = [
-  {
-    id: 1,
-    name: "Quantum X-1 Headset",
-    price: "$2,499",
-    category: "Neural Gear",
-    rating: 4.9,
-    image: "https://images.unsplash.com/photo-1744591433649-28069739f80b",
-    glowColor: "#06b6d4"
-  },
-  {
-    id: 2,
-    name: "Synapse Pro Watch",
-    price: "$899",
-    category: "Wearables",
-    rating: 4.7,
-    image: "https://images.unsplash.com/photo-1741062261267-939626580f9e",
-    glowColor: "#a855f7"
-  },
-  {
-    id: 3,
-    name: "Nebula VR Lens",
-    price: "$3,200",
-    category: "Immersive Tech",
-    rating: 4.8,
-    image: "https://images.unsplash.com/photo-1744591433649-28069739f80b",
-    glowColor: "#10b981"
-  },
-  {
-    id: 4,
-    name: "Cortex Core Unit",
-    price: "$1,150",
-    category: "Processors",
-    rating: 4.8,
-    image: "https://images.unsplash.com/photo-1760553122008-70027a3123eb",
-    glowColor: "#22c55e"
-  },
-  {
-    id: 5,
-    name: "Aura Audio Node",
-    price: "$599",
-    category: "Audio",
-    rating: 4.6,
-    image: "https://images.unsplash.com/photo-1744591433649-28069739f80b",
-    glowColor: "#f59e0b"
-  },
-  {
-    id: 6,
-    name: "Vector Keys",
-    price: "$350",
-    category: "Input",
-    rating: 4.9,
-    image: "https://images.unsplash.com/photo-1760553122008-70027a3123eb",
-    glowColor: "#3b82f6"
-  }
-];
-
 function AppContent() {
   const { scrollYProgress } = useScroll();
   const { isAdmin } = useAuth();
-  const { currentPage, currentProductId, navigate } = useNavigation();
-  const { getCartItemsCount } = useCart();
+  const { currentPage, navigate } = useNavigation();
   const { isRTL, language } = useTheme();
   const [products, setProducts] = useState<any[]>([]);
   const [productsLoading, setProductsLoading] = useState(true);

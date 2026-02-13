@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Phone, MapPin, CreditCard, ArrowRight, User as UserIcon } from 'lucide-react';
+import { User, MapPin, CreditCard, ArrowRight, User as UserIcon } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
 import { toast } from 'sonner';
@@ -52,30 +52,6 @@ export function CheckoutForm({ isOpen, onClose, onSuccess }: CheckoutFormProps) 
       });
     }
   }, [isAuthenticated, user]);
-
-  const formatEgyptianPhone = (value: string): string => {
-    // Remove all non-digits
-    const digits = value.replace(/\D/g, '');
-    
-    if (digits.length === 0) return '';
-    
-    // Always start with +20, then add the digits
-    const mobilePart = digits.substring(0, 10);
-    
-    if (mobilePart.length >= 10) {
-      // Format: +20 11 12345678 (prefix + 8 digits)
-      return `+20 ${mobilePart.substring(0, 2)} ${mobilePart.substring(2, 10)}`;
-    } else if (mobilePart.length >= 3) {
-      // Partial format: +20 11 1234...
-      return `+20 ${mobilePart.substring(0, 2)} ${mobilePart.substring(2)}`;
-    } else if (mobilePart.length >= 2) {
-      // Prefix only: +20 11
-      return `+20 ${mobilePart.substring(0, 2)}`;
-    } else {
-      // Just starting: +20 1
-      return `+20 ${mobilePart}`;
-    }
-  };
 
   const handleInputChange = (field: keyof UserInfo, value: string) => {
     // Don't auto-format phone, let user type freely
@@ -161,7 +137,6 @@ export function CheckoutForm({ isOpen, onClose, onSuccess }: CheckoutFormProps) 
       });
 
       if (response.ok) {
-        const data = await response.json();
         toast.success('Order placed successfully!');
         clearCart();
         onSuccess();

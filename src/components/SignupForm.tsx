@@ -128,30 +128,6 @@ export function SignupForm({ onNavigateToLogin }: SignupFormProps) {
     return undefined;
   };
 
-  const formatEgyptianPhone = (value: string): string => {
-    // Remove all non-digits
-    const digits = value.replace(/\D/g, '');
-    
-    if (digits.length === 0) return '';
-    
-    // Always start with +20, then add the digits
-    const mobilePart = digits.substring(0, 10);
-    
-    if (mobilePart.length >= 10) {
-      // Format: +20 11 12345678 (prefix + 8 digits)
-      return `+20 ${mobilePart.substring(0, 2)} ${mobilePart.substring(2, 10)}`;
-    } else if (mobilePart.length >= 3) {
-      // Partial format: +20 11 1234...
-      return `+20 ${mobilePart.substring(0, 2)} ${mobilePart.substring(2)}`;
-    } else if (mobilePart.length >= 2) {
-      // Prefix only: +20 11
-      return `+20 ${mobilePart.substring(0, 2)}`;
-    } else {
-      // Just starting: +20 1
-      return `+20 ${mobilePart}`;
-    }
-  };
-
   const validateAddress = (address: string): string | undefined => {
     if (address && address.length < 5) return 'Address must be at least 5 characters';
     return undefined;
@@ -286,8 +262,6 @@ export function SignupForm({ onNavigateToLogin }: SignupFormProps) {
           
           throw new Error(errorData.message || 'Failed to signup');
         }
-        
-        const data = await res.json();
         
         // Show success popup and redirect to login
         setNotification({

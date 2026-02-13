@@ -1,6 +1,5 @@
-import React from 'react';
-import { motion } from 'motion/react';
-import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
+import { motion } from "framer-motion"
+import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 
 interface CategoryCardProps {
   title: string;

@@ -2,7 +2,7 @@ import { Sun, Moon, Globe } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
 export function ThemeToggle() {
-  const { theme, toggleTheme, language, setLanguage, isRTL, t } = useTheme();
+  const { theme, toggleTheme, language, setLanguage, isRTL } = useTheme();
 
   return (
     <div className={`flex items-center gap-4 ${isRTL ? 'flex-row-reverse' : ''}`}>

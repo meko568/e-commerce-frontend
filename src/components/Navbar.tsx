@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ShoppingCart, Search, User, Menu, X, Heart } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

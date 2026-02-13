@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { User, Mail, LogOut, Edit2, Save, X, Shield, Settings, Phone, MapPin } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { User, LogOut, Edit2, Save, X, Shield, MapPin } from 'lucide-react';
 import { NotificationPopup } from './NotificationPopup';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
@@ -57,30 +57,6 @@ export function ProfilePage() {
       }));
     }
   }, [user]);
-
-  const formatEgyptianPhone = (value: string): string => {
-    // Remove all non-digits
-    const digits = value.replace(/\D/g, '');
-    
-    if (digits.length === 0) return '';
-    
-    // Always start with +20, then add the digits
-    const mobilePart = digits.substring(0, 10);
-    
-    if (mobilePart.length >= 10) {
-      // Format: +20 11 12345678 (prefix + 8 digits)
-      return `+20 ${mobilePart.substring(0, 2)} ${mobilePart.substring(2, 10)}`;
-    } else if (mobilePart.length >= 3) {
-      // Partial format: +20 11 1234...
-      return `+20 ${mobilePart.substring(0, 2)} ${mobilePart.substring(2)}`;
-    } else if (mobilePart.length >= 2) {
-      // Prefix only: +20 11
-      return `+20 ${mobilePart.substring(0, 2)}`;
-    } else {
-      // Just starting: +20 1
-      return `+20 ${mobilePart}`;
-    }
-  };
 
   const validateEmail = (email: string): string | undefined => {
     if (!email) return 'Email is required';
