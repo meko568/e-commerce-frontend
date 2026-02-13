@@ -18,6 +18,7 @@ export function FuturisticNavbar({ onLoginClick, setIsCartOpen }: FuturisticNavb
   const { navigate } = useNavigation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isAuthenticated, isAdmin } = useAuth();
   const { getCartItemsCount } = useCart();
   const { isRTL, t, theme, language } = useTheme();
@@ -39,20 +40,20 @@ export function FuturisticNavbar({ onLoginClick, setIsCartOpen }: FuturisticNavb
             : 'bg-transparent border-white/5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
           <div className="flex items-center gap-2 group cursor-pointer">
-            <div className="w-10 h-10 bg-cyan-500 rounded-lg flex items-center justify-center relative overflow-hidden">
-              <Zap className="text-black z-10" size={24} />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-cyan-500 rounded-lg flex items-center justify-center relative overflow-hidden">
+              <Zap className="text-black z-10" size={20} />
               <motion.div 
                 animate={{ 
                   left: ['-100%', '200%'],
                   top: ['-100%', '200%']
                 }}
                 transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                className="absolute w-20 h-2 bg-white/40 rotate-45"
+                className="absolute w-16 h-2 bg-white/40 rotate-45"
               />
             </div>
-            <span className={`text-2xl font-black tracking-taller transition-colors ${
+            <span className={`text-lg sm:text-2xl font-black tracking-taller transition-colors ${
               theme === 'light' 
                 ? 'text-gray-900 group-hover:text-cyan-600' 
                 : 'text-white group-hover:text-cyan-400'
@@ -61,12 +62,13 @@ export function FuturisticNavbar({ onLoginClick, setIsCartOpen }: FuturisticNavb
             </span>
           </div>
 
-          <div className={`hidden lg:flex items-center gap-10 ${isRTL ? 'flex-row-reverse' : ''}`}>
+          {/* Desktop Navigation */}
+          <div className={`hidden lg:flex items-center gap-6 xl:gap-10 ${isRTL ? 'flex-row-reverse' : ''}`}>
           {['quantum', 'neural', 'cyber', 'specs'].map((item) => (
             <a 
               key={item} 
               href={`#${item}`}
-              className={`text-sm font-bold uppercase tracking-widest transition-all relative group ${
+              className={`text-xs sm:text-sm font-bold uppercase tracking-widest transition-all relative group ${
                 theme === 'light'
                   ? 'text-gray-600 hover:text-cyan-600'
                   : 'text-white/60 hover:text-cyan-400'
@@ -78,25 +80,38 @@ export function FuturisticNavbar({ onLoginClick, setIsCartOpen }: FuturisticNavb
           ))}
         </div>
 
-        <div className="flex items-center gap-4">
-          <ThemeToggle />
-          <button className={`transition-colors ${
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className={`lg:hidden transition-colors p-2 rounded-lg ${
             theme === 'light'
-              ? 'text-gray-600 hover:text-cyan-600'
-              : 'text-white/60 hover:text-cyan-400'
+              ? 'text-gray-600 hover:text-cyan-600 hover:bg-gray-100'
+              : 'text-white/60 hover:text-cyan-400 hover:bg-white/10'
+          }`}
+        >
+          <Menu size={24} />
+        </button>
+
+        {/* Desktop Actions */}
+        <div className="hidden lg:flex items-center gap-2 sm:gap-4">
+          <ThemeToggle />
+          <button className={`transition-colors p-2 rounded-lg ${
+            theme === 'light'
+              ? 'text-gray-600 hover:text-cyan-600 hover:bg-gray-100'
+              : 'text-white/60 hover:text-cyan-400 hover:bg-white/10'
           }`}>
-            <Search size={20} />
+            <Search size={18} />
           </button>
           <button 
             onClick={() => setIsCartOpen?.(true)}
-            className={`relative transition-colors ${
+            className={`relative transition-colors p-2 rounded-lg ${
               theme === 'light'
-                ? 'text-gray-600 hover:text-cyan-600'
-                : 'text-white/60 hover:text-cyan-400'
+                ? 'text-gray-600 hover:text-cyan-600 hover:bg-gray-100'
+                : 'text-white/60 hover:text-cyan-400 hover:bg-white/10'
             }`}
           >
-            <ShoppingCart size={20} />
-            <span className="absolute -top-2 -right-2 w-4 h-4 bg-cyan-500 text-[10px] text-black font-black flex items-center justify-center rounded-full">
+            <ShoppingCart size={18} />
+            <span className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 bg-cyan-500 text-[10px] sm:text-[11px] text-black font-black flex items-center justify-center rounded-full">
               {getCartItemsCount()}
             </span>
           </button>
@@ -161,6 +176,103 @@ export function FuturisticNavbar({ onLoginClick, setIsCartOpen }: FuturisticNavb
         </div>
       </div>
       </motion.nav>
+      
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div className="mobile-nav">
+          <div className={`mobile-nav-content ${isMobileMenuOpen ? 'mobile-menu-enter' : 'mobile-menu-exit'} ${isRTL ? 'right-0 left-auto' : ''}`}>
+            <div className="p-6 space-y-6">
+              {/* Mobile Navigation Links */}
+              <div className="space-y-4">
+                {['quantum', 'neural', 'cyber', 'specs'].map((item) => (
+                  <a 
+                    key={item} 
+                    href={`#${item}`}
+                    className={`block text-lg font-bold uppercase tracking-widest transition-colors py-2 ${
+                      theme === 'light'
+                        ? 'text-gray-600 hover:text-cyan-600'
+                        : 'text-white/60 hover:text-cyan-400'
+                    }`}
+                  >
+                    {t(item)}
+                  </a>
+                ))}
+              </div>
+
+              {/* Mobile Actions */}
+              <div className="space-y-4 pt-6 border-t border-gray-200">
+                <ThemeToggle />
+                
+                <button className={`w-full flex items-center justify-between p-3 rounded-lg transition-colors ${
+                  theme === 'light'
+                    ? 'bg-gray-100 hover:bg-gray-200 text-gray-600'
+                    : 'bg-white/10 hover:bg-white/20 text-white/60'
+                }`}>
+                  <span>{t('search')}</span>
+                  <Search size={20} />
+                </button>
+
+                <button 
+                  onClick={() => setIsCartOpen?.(true)}
+                  className={`w-full flex items-center justify-between p-3 rounded-lg transition-colors ${
+                    theme === 'light'
+                      ? 'bg-gray-100 hover:bg-gray-200 text-gray-600'
+                      : 'bg-white/10 hover:bg-white/20 text-white/60'
+                  }`}
+                >
+                  <span>{t('cart')}</span>
+                  <div className="flex items-center gap-2">
+                    <ShoppingCart size={20} />
+                    <span className="w-6 h-6 bg-cyan-500 text-[11px] text-black font-black flex items-center justify-center rounded-full">
+                      {getCartItemsCount()}
+                    </span>
+                  </div>
+                </button>
+
+                {isAuthenticated ? (
+                  <div className="space-y-3">
+                    {isAdmin && (
+                      <button
+                        onClick={() => navigate('admin')}
+                        className={`w-full flex items-center gap-2 p-3 rounded-lg transition-all ${
+                          theme === 'light'
+                            ? 'bg-purple-100 hover:bg-purple-200 text-purple-600'
+                            : 'bg-purple-500/20 hover:bg-purple-500/30 text-purple-400'
+                        }`}
+                      >
+                        <Settings size={20} />
+                        <span>{language === 'ar' ? 'لوحة التحكم' : 'Admin Dashboard'}</span>
+                      </button>
+                    )}
+                    <button
+                      onClick={() => setShowProfile(true)}
+                      className={`w-full flex items-center gap-2 p-3 rounded-lg transition-all ${
+                        theme === 'light'
+                          ? 'bg-blue-100 hover:bg-blue-200 text-blue-600'
+                          : 'bg-blue-500/20 hover:bg-blue-500/30 text-blue-400'
+                        }`}
+                    >
+                      <User size={20} />
+                      <span>{t('profile')}</span>
+                    </button>
+                  </div>
+                ) : (
+                  <button 
+                    onClick={onLoginClick}
+                    className={`w-full p-3 rounded-lg text-center font-bold uppercase tracking-widest transition-all ${
+                      theme === 'light'
+                        ? 'bg-cyan-500 hover:bg-cyan-600 text-white'
+                        : 'bg-cyan-600 hover:bg-cyan-700 text-white'
+                    }`}
+                  >
+                    {t('login')}
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       
       {/* Profile Page Modal */}
       {showProfile && (

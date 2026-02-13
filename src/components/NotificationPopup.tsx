@@ -36,7 +36,7 @@ export function NotificationPopup({
   const Icon = type === 'success' ? CheckCircle : XCircle;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-8">
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
@@ -46,7 +46,7 @@ export function NotificationPopup({
       {/* Popup */}
       <div
         className={`
-          relative max-w-md w-full bg-white rounded-2xl shadow-2xl p-6
+          relative w-full max-w-sm sm:max-w-md lg:max-w-lg bg-white rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-8
           transform transition-all duration-300 ease-out
           ${isVisible 
             ? 'scale-100 opacity-100 translate-y-0' 
@@ -57,34 +57,34 @@ export function NotificationPopup({
         {/* Close Button */}
         <button
           onClick={handleClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+          className="absolute top-3 sm:top-4 right-3 sm:right-4 text-gray-400 hover:text-gray-600 transition-colors touch-target"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
 
         {/* Content */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-3 sm:space-x-4">
           {/* Icon */}
-          <div className={`flex-shrink-0 w-12 h-12 ${bgColor} rounded-full flex items-center justify-center`}>
-            <Icon className="w-6 h-6 text-white" />
+          <div className={`flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 ${bgColor} rounded-full flex items-center justify-center`}>
+            <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
           </div>
 
           {/* Message */}
-          <div className="flex-1">
-            <h3 className="text-lg font-semibold text-gray-900">
+          <div className="flex-1 min-w-0">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900">
               {type === 'success' ? 'Success!' : 'Error!'}
             </h3>
-            <p className="text-sm mt-1 text-gray-700">
+            <p className="text-xs sm:text-sm mt-1 text-gray-700 break-words">
               {message}
             </p>
           </div>
         </div>
 
         {/* Action Button */}
-        <div className="mt-6 flex justify-end">
+        <div className="mt-4 sm:mt-6 flex justify-end">
           <button
             onClick={handleClose}
-            className="px-4 py-2 rounded-lg font-medium transition-colors bg-green-600 text-white hover:bg-green-700"
+            className="px-3 py-2 sm:px-4 sm:py-3 rounded-lg font-medium transition-colors bg-green-600 text-white hover:bg-green-700 button-touch"
           >
             {type === 'success' ? 'Got it' : 'Try Again'}
           </button>
