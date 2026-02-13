@@ -35,7 +35,7 @@
     "react-resizable-panels": "^2.0.63",
     "react-hook-form": "^7.48.2",
     "cmdk": "^1.0.0",
-    "vaul": "^2.0.0",
+    "vaul": "^1.1.0",
     "input-otp": "^1.2.4",
     "class-variance-authority": "^0.7.1",
     "framer-motion": "^12.30.0",
