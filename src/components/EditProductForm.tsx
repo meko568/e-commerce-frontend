@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_URL } from '../config/api';
 import { X, Upload, Image as ImageIcon, DollarSign, Package, FileText } from 'lucide-react';
 import { toast } from 'sonner';
 import { Hash } from 'lucide-react';
@@ -155,7 +156,7 @@ export function EditProductForm({ product, onClose, onSuccess }: EditProductForm
       // Add method override for file uploads
       formData.append('_method', 'PUT');
 
-      const response = await fetch(`http://127.0.0.1:8000/api/products/${product.id}`, {
+      const response = await fetch(`${API_URL}/api/products/${product.id}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

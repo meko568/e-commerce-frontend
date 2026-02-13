@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_URL } from '../config/api';
 import { User, MapPin, CreditCard, ArrowRight, User as UserIcon } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
@@ -124,7 +125,7 @@ export function CheckoutForm({ isOpen, onClose, onSuccess }: CheckoutFormProps) 
 
     try {
       // Send order to backend with paid status
-      const response = await fetch('http://127.0.0.1:8000/api/orders', {
+      const response = await fetch(`${API_URL}/api/orders`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

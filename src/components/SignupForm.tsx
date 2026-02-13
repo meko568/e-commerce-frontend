@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, Mail, Lock, User, AlertCircle, Phone, MapPin } from 'lucide-react';
+import { API_URL } from '../config/api';
 import { NotificationPopup } from './NotificationPopup';
 
 interface FormData {
@@ -67,7 +68,7 @@ export function SignupForm({ onNavigateToLogin }: SignupFormProps) {
 
   const checkEmailExists = async (email: string): Promise<boolean> => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/check-email?email=${encodeURIComponent(email)}`);
+      const response = await fetch(`${API_URL}/api/check-email?email=${encodeURIComponent(email)}`);
       const data = await response.json();
       return data.exists;
     } catch (error) {
@@ -243,7 +244,7 @@ export function SignupForm({ onNavigateToLogin }: SignupFormProps) {
           country: formData.country
         };
         
-        const res = await fetch('http://127.0.0.1:8000/api/signup', {
+        const res = await fetch(`${API_URL}/api/signup`, {
           method: 'POST',
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(apiData)

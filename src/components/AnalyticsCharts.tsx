@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_URL } from '../config/api';
 import { Package, DollarSign, ShoppingCart, Users } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
@@ -43,7 +44,7 @@ export function SalesChart() {
       const token = localStorage.getItem('token');
       
       // Fetch orders to calculate monthly sales
-      const response = await fetch('http://127.0.0.1:8000/api/orders/', {
+      const response = await fetch(`${API_URL}/api/orders/`, {
         headers: {
           'Authorization': `Token ${token}`,
         },
@@ -170,14 +171,14 @@ export function TopProductsChart() {
       const token = localStorage.getItem('token');
       
       // Fetch products
-      const productsResponse = await fetch('http://127.0.0.1:8000/api/products/', {
+      const productsResponse = await fetch(`${API_URL}/api/products/`, {
         headers: {
           'Authorization': `Token ${token}`,
         },
       });
 
       // Fetch orders to calculate sales
-      const ordersResponse = await fetch('http://127.0.0.1:8000/api/orders/', {
+      const ordersResponse = await fetch(`${API_URL}/api/orders/`, {
         headers: {
           'Authorization': `Token ${token}`,
         },
@@ -312,13 +313,13 @@ export function AnalyticsCharts() {
       
       // Fetch products, orders, and users
       const [productsResponse, ordersResponse, usersResponse] = await Promise.all([
-        fetch('http://127.0.0.1:8000/api/products/', {
+        fetch(`${API_URL}/api/products/`, {
           headers: { 'Authorization': `Token ${token}` }
         }),
-        fetch('http://127.0.0.1:8000/api/orders/', {
+        fetch(`${API_URL}/api/orders/`, {
           headers: { 'Authorization': `Token ${token}` }
         }),
-        fetch('http://127.0.0.1:8000/api/users/', {
+        fetch(`${API_URL}/api/users/`, {
           headers: { 'Authorization': `Token ${token}` }
         })
       ]);

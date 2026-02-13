@@ -10,6 +10,7 @@ import { ProductPage } from './pages/ProductPage';
 import { Cart } from './components/Cart';
 import { PayPalCheckout } from './components/PayPalCheckout';
 import { Toaster, toast } from 'sonner';
+import { API_URL } from './config/api';
 import { ArrowRight, Github, Twitter, Instagram, Globe, Cpu, ShieldCheck, Zap } from 'lucide-react';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { CartProvider } from './contexts/CartContext';
@@ -45,7 +46,7 @@ function AppContent() {
     const fetchProducts = async () => {
       try {
         setProductsLoading(true);
-        const response = await fetch('http://127.0.0.1:8000/api/products');
+        const response = await fetch(`${API_URL}/api/products`);
         const data = await response.json();
         
         if (response.ok) {

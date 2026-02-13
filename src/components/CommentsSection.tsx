@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { API_URL } from '../config/api';
 import { Star, MessageCircle, Trash2, Send } from 'lucide-react';
 import { toast } from 'sonner';
 import { useAuth } from '../contexts/AuthContext';
@@ -34,7 +35,7 @@ export function CommentsSection({ productId }: CommentsSectionProps) {
     const fetchComments = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`http://127.0.0.1:8000/api/products/${productId}/comments`);
+        const response = await fetch(`${API_URL}/api/products/${productId}/comments`);
         const data = await response.json();
 
         if (data.success) {
@@ -66,7 +67,7 @@ export function CommentsSection({ productId }: CommentsSectionProps) {
 
     try {
       setSubmitting(true);
-      const response = await fetch(`http://127.0.0.1:8000/api/products/${productId}/comments`, {
+      const response = await fetch(`${API_URL}/api/products/${productId}/comments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -102,7 +103,7 @@ export function CommentsSection({ productId }: CommentsSectionProps) {
     if (!confirm('Are you sure you want to delete this comment?')) return;
 
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/comments/${commentId}`, {
+      const response = await fetch(`${API_URL}/api/comments/${commentId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`

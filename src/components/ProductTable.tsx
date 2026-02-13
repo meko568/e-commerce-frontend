@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_URL } from '../config/api';
 import { Edit2, Trash2, ToggleLeft, ToggleRight, Hash, Package } from 'lucide-react';
 import { toast } from 'sonner';
 import { useTheme } from '../contexts/ThemeContext';
@@ -36,7 +37,7 @@ export function ProductTable({ onEditProduct, refreshTrigger }: ProductTableProp
       setLoading(true);
       const token = localStorage.getItem('token');
       
-      const response = await fetch('http://127.0.0.1:8000/api/products', {
+      const response = await fetch(`${API_URL}/api/products`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -74,7 +75,7 @@ export function ProductTable({ onEditProduct, refreshTrigger }: ProductTableProp
         return;
       }
 
-      const response = await fetch(`http://127.0.0.1:8000/api/products/${productId}`, {
+      const response = await fetch(`${API_URL}/api/products/${productId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -111,7 +112,7 @@ export function ProductTable({ onEditProduct, refreshTrigger }: ProductTableProp
         return;
       }
 
-      const response = await fetch(`http://127.0.0.1:8000/api/products/${productId}`, {
+      const response = await fetch(`${API_URL}/api/products/${productId}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

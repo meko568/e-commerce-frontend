@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_URL } from '../config/api';
 import { User, Package, ShoppingCart, Settings, TrendingUp, Users, Menu, X, Home } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
@@ -52,7 +53,7 @@ export function AdminDashboard() {
     const fetchRecentOrders = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://127.0.0.1:8000/api/orders/', {
+        const response = await fetch(`${API_URL}/api/orders/`, {
           headers: {
             'Authorization': `Token ${token}`
           }

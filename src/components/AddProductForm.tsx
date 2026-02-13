@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_URL } from '../config/api';
 import { X, Upload, Image as ImageIcon, DollarSign, Package, FileText, Hash } from 'lucide-react';
 
 interface ProductData {
@@ -119,7 +120,7 @@ export function AddProductForm({ onClose, onSuccess }: AddProductFormProps) {
       });
 
       const token = localStorage.getItem('token');
-      const response = await fetch('http://127.0.0.1:8000/api/products', {
+      const response = await fetch(`${API_URL}/api/products`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`

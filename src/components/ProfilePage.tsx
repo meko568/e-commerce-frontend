@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { API_URL } from '../config/api';
 import { User, LogOut, Edit2, Save, X, Shield, MapPin } from 'lucide-react';
 import { NotificationPopup } from './NotificationPopup';
 import { useAuth } from '../contexts/AuthContext';
@@ -88,7 +89,7 @@ export function ProfilePage() {
     }
 
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/update-profile', {
+      const res = await fetch(`${API_URL}/api/update-profile`, {
         method: 'PUT',
         headers: { 
           "Content-Type": "application/json",
@@ -148,7 +149,7 @@ export function ProfilePage() {
     }
 
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/change-password', {
+      const res = await fetch(`${API_URL}/api/change-password`, {
         method: 'POST',
         headers: { 
           "Content-Type": "application/json",
